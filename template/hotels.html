@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--{% if room.host == request.user %}-->
+
+<!--{% endif %}-->
+
+<!--{{room.name}}-->
+<!--{{room.created|timesince}}-->
+
+<!--@{{room.host.username}}-->
+
+
+<div class="row">
+    {% for hotel in hotels %}
+    <div class="col-lg-13">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{hotel.name}}</h5>
+                <p class="card-text">{{hotel.info}}</p>
+                <div class="btn-group" role="group" aria-label="links">
+                    <a href="tel: {{hotel.phone}}" class="btn btn-primary">Call US</a>
+                    <a href="{% url 'showrooms' hotel.id %}" class="btn btn-primary">show rooms</a>
+                    {% if user.is_authenticated and user.username == 'admin' %}
+                    <form method="post" action="{% url 'deletehotel' hotel.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger mx-5" type="submit">Delete</button>
+                    </form>
+                    <a href="{% url 'updateHotel' hotel.id %}" class="btn btn-success       ">update hotel</a>
+
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!--{% if request.user == message.user %}-->
+<!--{% endif %}-->
+<!--{{message.body}}-->
+
+
+<!--{% for user in participants %}-->
+<!--{{user.name}}-->
+<!--{% endfor %}-->
+{% endblock content %}

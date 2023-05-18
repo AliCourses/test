@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--{% if room.host == request.user %}-->
+
+<!--{% endif %}-->
+
+<!--{{room.name}}-->
+<!--{{room.created|timesince}}-->
+
+<!--@{{room.host.username}}-->
+
+<!--{% for message in room_messages %}-->
+<!--@{{message.user.username}}-->
+
+<!--{% if request.user == message.user %}-->
+<!--{% endif %}-->
+<!--{{message.body}}-->
+
+<!--{% endfor %}-->
+{% if user.is_authenticated %}
+{% if user.username == 'admin' %}
+<a id="addlink" class="btn btn-primary" href="{% url 'addroom' id %}">Add room</a>
+{% endif %}
+{% endif %}
+<div class="row ">
+
+    {% for room in rooms %}
+    <div class="col-lg-16">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Capacity: {{room.capacity}}</h5>
+                <h5 class="card-title">Price:{{room.price}}</h5>
+
+                <div class="btn-group">
+                    {% if user.is_authenticated %}
+                    {% if user.username != 'admin' %}
+                    <a href="{% url 'reserveRoom' room.id %}" class="btn btn-primary">Reserve</a>
+                    {% else %}
+                    <a href="{% url 'deleteRoom' room.id %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'updateRoom' room.id %}" class="btn btn-success">Update</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock content %}

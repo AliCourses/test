@@ -1,0 +1,8 @@
+.content {
+position:relative;
+}
+#addlink {
+position:absolute;
+top:6px;
+left:6px;
+}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user.username == 'admin' %}
+<a href="{% url 'addroom' id %}">Add room</a>
+{% endif %}
+{% endif %}
+{% for room in rooms %}
+<div class="room-item">
+    <div class="capacity">
+        Capacity : {{room.capacity}}
+    </div>
+    <div class="price">
+        Price : {{room.price}}
+    </div>
+    <div>
+        hotel name : {{ room.hotel.name }}
+    </div>
+
+    <div class="links">
+        {% if user.is_authenticated %}
+        {% if user.username != 'admin' %}
+        <a href="{% url 'unreserveRoom' room.id %}">UnReserve</a>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

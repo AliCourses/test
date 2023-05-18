@@ -1,0 +1,31 @@
+.content {
+            flex-wrap: wrap;
+            gap: 5px;
+
+        }
+        .content .hotel-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid black;
+            width: 330px;
+            gap: 5px;
+
+
+        }
+
+        .content .hotel-item .hotel-name {
+            font-size: 25px;
+        }
+
+        .content .hotel-item a {
+            text-decoration: none;
+        }
+        .content .hotel-item .contact {
+            font-size: 15px;
+        }
+        .content .hotel-item .showroom {
+            align-self: center;
+            color: black;
+        }
+
